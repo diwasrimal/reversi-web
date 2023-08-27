@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: system-ui, Arial, sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+:root {
+    --black: #24283b;
+    --white: #c0caf5;
+    --red: #f74f6e;
+    --green: #9ece6a;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    :root { --box-length: 40px; }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    :root { --box-length: 60px; }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    :root { --box-length: 70px; }
+} 
+
+body {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.board {
+    background-color: var(--white);
+    border: none;
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(8, var(--box-length));
+}
+
+.board .button-wrapper {
+    height: var(--box-length);
+    background-color: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-wrapper button {
+    width: calc(var(--box-length) - 6px);
+    height: calc(var(--box-length) - 6px);
+    background-color: var(--black);
+    border: none;
+    border-radius: 50%;
+    transition: background-color 0.6s;
+}
+
+.button-wrapper button.red {
+    background-color: var(--red);
+}
+
+.button-wrapper button.green {
+    background-color: var(--green);
+}
+
+#game-details {
+    display: flex;
+    justify-content: space-between;
+    width: calc(var(--box-length) * 8);
+    font-size: max(20px, min(2vw, 30px));
+    padding: 40px;
+    font-weight: bold;
+}
+
+#red-count, .red {
+    color: var(--red);
+}
+
+#green-count, .green {
+    color: var(--green);
+}
+
