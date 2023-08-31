@@ -2,6 +2,13 @@
 A strategy game consisting of two players. This project implements the
 game using web-sockets.
 
+## Quick run
+```sh
+git clone https://github.com/diwasrimal/reversi-web
+cd reversi-web
+node .
+```
+
 See [reversi](https://en.wikipedia.org/wiki/Reversi) on Wikipedia.
 
 ## How communication is done

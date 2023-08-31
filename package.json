@@ -1,8 +1,8 @@
 {
-  "name": "server",
+  "name": "reversi",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A strategy game consisting of two players. This project implements the game using web-sockets.",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

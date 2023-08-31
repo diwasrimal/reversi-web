@@ -1,8 +1,44 @@
+const fs = require("fs");
 const { WebSocketServer } = require("ws");
-const { randomUUID } = require("crypto");
 const http = require("http");
+const { randomUUID } = require("crypto");
 
-const server = http.createServer();
+const server = http.createServer((req, res) => {
+    switch (req.url) {
+        case "/":
+            res.writeHead(200, { "Content-Type": "text/html" });
+            fs.readFile("./index.html", (err, content) => {
+                if (err) throw err;
+                res.write(content);
+                res.end();
+            });
+            break;
+
+        case "/game.js":
+            res.writeHead(200, { "Content-Type": "text/javascript" });
+            fs.readFile("./game.js", (err, content) => {
+                if (err) throw err;
+                res.write(content);
+                res.end();
+            });
+            break;
+
+        case "/style.css":
+            res.writeHead(200, { "Content-Type": "text/css" });
+            fs.readFile("./style.css", (err, content) => {
+                if (err) throw err;
+                res.write(content);
+                res.end();
+            });
+            break;
+
+        default:
+            res.writeHead(404);
+            res.write("Unkown route");
+            res.end();
+    }
+});
+
 const wss = new WebSocketServer({ server: server });
 
 let connections = {};
