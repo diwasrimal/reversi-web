@@ -6,6 +6,7 @@ game using web-sockets.
 ```sh
 git clone https://github.com/diwasrimal/reversi-web
 cd reversi-web
+npm install
 node .
 ```
 
