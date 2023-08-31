@@ -1,88 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Play Reversi</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="style.css" rel="stylesheet">
-    <script defer src="main.js"></script>
-  </head>
-  <body>
+<head>
+  <title>Play Reversi</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <script src="game.js" defer></script>
+</head>
+<body>
 
-    <div id="game-details">
+  <!-- Determines how opponent is chosen -->
+  <div class="player-type-chooser">
+    <h2>Find player</h2>
+    <input type="text" placeholder="Enter your username (required)" id="username" autocomplete="off"><br>
+    <button id="random-player" disabled>Random</button>
+    <button id="custom-player" disabled>Custom</button>
+  </div>
+
+  <!-- Used to connect to custom player by entering id -->
+  <div class="custom-player-chooser hidden">
+    Your Id: <span id="client-id"></span><br>
+    <input id="custom-player-id" type="text" placeholder="Opponent id" autocomplete="off"><br>
+    <button id="custom-player-connect">Connect</button>
+  </div>
+
+  <!-- Loading animation -->
+  <div class="spinning-animation hidden">
+    <div class="container">
+      <div class="spinner">
+        <div class="spinner">
+          <div class="spinner">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Details of game: score, turn, etc -->
+  <div id="game-details" class="hidden">
+    <div><span id="game-title"></span></div>
+    <div>
       <div>Reds: <span id="red-count"></span></div>
       <div>Turn: <span id="turn"></span></div>
       <div>Greens: <span id="green-count"></span></div>
     </div>
+  </div>
 
-    <div class="board">
-      <div id="game-result" class="game-over hidden">
-          Game Over
-      </div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
-      <div class="button-wrapper"><button></button></div>
+  <!-- The 8x8 board with button to make moves -->
+  <div class="board hidden">
+
+    <!-- Covers the parent div and shows game results after game finishes -->
+    <div class="game-result hidden">
+
     </div>
-  </body>
+
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+    <div class="button-wrapper"><button></button></div>
+
+  </div>
+
+</body>
 </html>

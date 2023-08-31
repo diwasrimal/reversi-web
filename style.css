@@ -34,6 +34,11 @@ html, body {
     :root { --box-length: 70px; }
 } 
 
+@keyframes spin {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
 body {
     display: flex;
     flex-flow: column;
@@ -41,6 +46,41 @@ body {
     align-items: center;
     background-color: var(--black);
     color: var(--white);
+}
+
+.player-type-chooser, .custom-player-chooser {
+    display: flex;
+    gap: 20px;
+    flex-flow: column;
+    width: min(400px, 80%);
+    text-align: center;
+    font-size: x-large;
+}
+
+.player-type-chooser input,
+.custom-player-chooser input,
+.player-type-chooser button,
+.custom-player-chooser button {
+    font-size: medium;
+    padding: 10px;
+}
+
+.player-type-chooser #client-id {
+    font-size: smaller;
+}
+
+.spinning-animation .container {
+    display: flex;
+    align-items: center;
+    padding: 3rem;
+    justify-content: center;
+}
+
+.spinning-animation .container .spinner {
+    height: 70px;
+    width: 70px;
+    border: 1px solid var(--white);
+    animation: spin 5s infinite;
 }
 
 .board {
@@ -79,11 +119,17 @@ body {
 
 #game-details {
     display: flex;
-    justify-content: space-between;
+    flex-flow: column;
+    gap: 10px;
     width: calc(var(--box-length) * 8);
     font-size: max(20px, min(2vw, 30px));
     padding: 40px;
     font-weight: bold;
+}
+
+#game-details div {
+    display: flex;
+    justify-content: space-around;
 }
 
 #red-count, .red {
@@ -94,7 +140,7 @@ body {
     color: var(--green);
 }
 
-.game-over {
+.game-result {
     font-size: xx-large;
     font-weight: bold;
     position: absolute;
@@ -107,7 +153,5 @@ body {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
-
-
