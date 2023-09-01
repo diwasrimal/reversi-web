@@ -353,6 +353,7 @@ function endGame() {
     const greenCount = colorCount("green");
     if (redCount === greenCount) {
         resultDiv.innerHTML = "TIE!";
+        show(resultDiv);
         return;
     }
     const winnerIdx = redCount > greenCount ? 0 : 1;
