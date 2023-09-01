@@ -3,6 +3,8 @@ const { WebSocketServer } = require("ws");
 const http = require("http");
 const { randomUUID } = require("crypto");
 
+const port = process.env.PORT || 3000;
+
 const server = http.createServer((req, res) => {
     switch (req.url) {
         case "/":
@@ -210,4 +212,4 @@ function logData() {
     console.log("Pairs:", pairs);
 }
 
-server.listen(8080, () => console.log("Listening on http://localhost:8080"));
+server.listen(port, "0.0.0.0", () => console.log(`Listening on port ${port}`));
