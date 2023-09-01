@@ -1,3 +1,6 @@
+const socketProtocol = location.protocol === "https:" ? "wss" : "ws";
+const socketUrl = `${socketProtocol}://${location.host}`
+
 const playerTypeChooserDiv = document.querySelector(".player-type-chooser");
 const usernameInput = document.querySelector("#username");
 const randomPlayerButton = document.querySelector("#random-player");
@@ -31,7 +34,7 @@ function show(...elems) {
     for (const elem of elems) elem.classList.remove("hidden");
 }
 
-const socket = new WebSocket("ws://localhost:8080");
+const socket = new WebSocket(socketUrl);
 const colors = ["red", "green"];
 let clientId;
 let opponentId;
