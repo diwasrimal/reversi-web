@@ -1,6 +1,7 @@
 # Reversi
 A strategy game consisting of two players. This project implements the
-game using web-sockets.
+game using web-sockets. See [reversi](https://en.wikipedia.org/wiki/Reversi) on Wikipedia.
+
 
 ## Quick run
 ```sh
@@ -10,8 +11,6 @@ npm install
 node .
 ```
 
-See [reversi](https://en.wikipedia.org/wiki/Reversi) on Wikipedia.
-
 ## How communication is done
 
 Every communication between client and socket server is done in JSON format.
@@ -20,7 +19,6 @@ type of communication that is being done
 ```JSON
 {
     "type": "message_type",
-    // ...
 }
 ```
 The used types for communication are
@@ -72,6 +70,6 @@ format for second request is like
 ```JSON
 {
     "type": "connectViaOpponentId",
-    "opponentId": "9348afj9ur893", // this is random
+    "opponentId": "9348afj9ur893",
 }
 ```
