@@ -76,6 +76,8 @@ wss.on("connection", (conn) => {
             );
 
         delete connections[clientId];
+        delete usernames[clientId];
+        delete usernames[opponentId];
         delete pairs[opponentId];
         delete pairs[clientId];
         randomWanting = randomWanting.filter((id) => id !== clientId);
