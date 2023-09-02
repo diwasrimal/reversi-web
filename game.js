@@ -198,6 +198,10 @@ function boardReset() {
     players = undefined;
     delete usernames[opponentId];
     opponentId = undefined;
+
+    // Hide result (opponent may have quit after ending the game)
+    resultDiv.innerHTML = "";
+    hide(resultDiv);
 }
 
 // Updates game info on webpage and changes board states
