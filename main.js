@@ -16,9 +16,9 @@ const server = http.createServer((req, res) => {
             });
             break;
 
-        case "/game.js":
+        case "/script.js":
             res.writeHead(200, { "Content-Type": "text/javascript" });
-            fs.readFile("./game.js", (err, content) => {
+            fs.readFile("./script.js", (err, content) => {
                 if (err) throw err;
                 res.write(content);
                 res.end();
@@ -214,4 +214,5 @@ function logData() {
     console.log("Pairs:", pairs);
 }
 
-server.listen(port, "0.0.0.0", () => console.log(`Listening on port ${port}`));
+const host = "0.0.0.0"
+server.listen(port, host, () => console.log(`Listening on ${host}:${port}...`));

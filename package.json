@@ -2,10 +2,10 @@
   "name": "reversi",
   "version": "1.0.0",
   "description": "A strategy game consisting of two players. This project implements the game using web-sockets.",
-  "main": "server.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node main.js"
   },
   "keywords": [],
   "author": "",
